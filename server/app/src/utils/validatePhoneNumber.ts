@@ -15,7 +15,7 @@ export const validatePhoneNumber = async (phoneNumber: string) => {
   try {
     const response = await sendAxiosRequest<ValidatePhoneNumberResponse>({
       method: "get",
-      url: `${baseURL}/validator/phone?phone=96171392534`,
+      url: `${baseURL}/validator/phone`,
       config: { params: { phone: phoneNumber } },
     });
 

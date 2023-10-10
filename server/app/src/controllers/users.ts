@@ -16,7 +16,17 @@ export const getUser: RequestHandler = async (req, res, next) => {
   try {
     const params = req.params;
     const userId = params.id;
+
+    if (!userId) {
+      throw new Error("User id is required");
+    }
+
     const user = await UserModel.findById(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
     res.status(200).json(user);
   } catch (error) {
     next(error);
@@ -75,6 +85,10 @@ export const updateUser: RequestHandler = async (req, res, next) => {
       { new: true },
     );
 
+    if (!user) {
+      throw new Error("User not found");
+    }
+
     res.status(200).json(user);
   } catch (error) {
     next(error);
@@ -86,7 +100,15 @@ export const deleteUser: RequestHandler = async (req, res, next) => {
     const params = req.params;
     const userId = params.id;
 
+    if (!userId) {
+      throw new Error("User id is required");
+    }
+
     const user = await UserModel.findByIdAndDelete(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
 
     res.status(200).json(user);
   } catch (error) {

@@ -6,6 +6,7 @@ export const validatePhoneNumber = (phoneNumber: string) => {
       ? phoneNumber
       : `+${phoneNumber}`;
 
+  console.log(formattedPhoneNumber);
   const phone = validatePhone(formattedPhoneNumber, {
     validateMobilePrefix: false,
   });
